@@ -67,9 +67,9 @@ const DoctorProfile = () => {
           </ul>
 
           <div className="profile-actions">
-            <a href="#contato" className="button button-primary">
+            <Link to="/contato" className="button button-primary">
               Agendar consulta
-            </a>
+            </Link>
             <Link to="/doutores" className="button">
               Ver todos
             </Link>

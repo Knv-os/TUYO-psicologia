@@ -12,21 +12,8 @@ const ServiceCard = ({ icon, title, description, ctaLink, ctaText }) => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       whileHover={{ y: -4, scale: 1.02 }}
     >
-      <div
-        className="card-icon"
-        aria-hidden="true"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          alignContent: "center",
-          justifyContent: "center",
-        }}
-      >
-        <img
-          src={icon}
-          alt={`Ícone para ${title}`}
-          style={{ height: "50px", width: "50px" }}
-        />
+      <div className="card-icon" aria-hidden="true">
+        <img src={icon} alt={`Ícone para ${title}`} />
       </div>
       <h3 className="card-title">{title}</h3>
       <p className="card-text">{description}</p>

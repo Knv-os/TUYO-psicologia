@@ -11,7 +11,7 @@ const Footer = () => {
           <Link to="/" className="footer-logo">
             <img src={logo} alt="Tuyo Psicologia" style={{ height: 40 }} />
           </Link>
-          <p style={{ marginTop: 16, color: "var(--text-color-secondary)" }}>
+          <p style={{ marginTop: 16, color: "var(--color-muted)" }}>
             Mais presença, mais sentido, mais vida.
           </p>
         </div>

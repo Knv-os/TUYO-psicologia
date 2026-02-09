@@ -33,9 +33,9 @@ const Home = () => {
               <p className="hero-subtitle">
                 Psicologia Integrada com ética, afeto e presença.
               </p>
-              <a href="#contato" className="button button-primary">
+              <Link to="/contato" className="button button-primary">
                 Agende sua sessão
-              </a>
+              </Link>
             </div>
             <img
               src={stars}
@@ -85,9 +85,9 @@ const Home = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            Aqui, as diversas abordagens psicólogicas se encontram para oferecer
-            um cudado plural, ético e humano. Do atendimento infantil ao adulto,
-            do trablho com famílias às demandas específicas da vida
+            Aqui, as diversas abordagens psicológicas se encontram para oferecer
+            um cuidado plural, ético e humano. Do atendimento infantil ao
+            adulto, do trabalho com famílias às demandas específicas da vida
             contemporânea, nossa essência é a mesma: respeitar a singularidade
             de cada pessoa e criar vínculos que sustentem processos de
             transformação. Cada profissional traz sua sensibilidade e
@@ -137,13 +137,13 @@ const Home = () => {
             singular. Desde 2017, nossa jornada é guiada pela escuta e pela
             construção de vínculos genuínos.
           </motion.p>
-          <div className="grid" style={{ marginTop: 32 }}>
+          <div className="grid mt-32">
             {doctors.slice(0, 3).map((d) => (
               <DoctorCard key={d.id} doctor={d} />
             ))}
           </div>
 
-          <div style={{ marginTop: 16 }}>
+          <div className="mt-16">
             <Link to="/doutores" className="button">
               Ver todos os profissionais
             </Link>

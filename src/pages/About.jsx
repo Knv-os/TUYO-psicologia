@@ -7,6 +7,7 @@ import iconVinculo from "../assets/vinculo.png";
 import iconOrganizacao from "../assets/organização.png";
 import equipe from "../assets/equipe-tuyo.jpg";
 import stars from "../assets/stars.png";
+import { Link } from "react-router-dom";
 const About = () => {
   return (
     <main>
@@ -27,9 +28,9 @@ const About = () => {
               <p className="hero-subtitle">
                 Psicologia Integrada com ética, afeto e presença.
               </p>
-              <a href="#contato" className="button button-primary">
+              <Link to="/contato" className="button button-primary">
                 Agende sua sessão
-              </a>
+              </Link>
             </div>
             <img
               src={stars}
@@ -84,13 +85,13 @@ const About = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          Aqui, as diversas abprdagens psicólogicas se encontram para oferecer
-          um cudado plural, ético e humano. Do atendimento infantil ao adulto,
-          do trablho com famílias às demandas específicas da vida contemporânea,
-          nossa essência é a mesma: respeitar a singularidade de cada pessoa e
-          criar vínculos que sustentem processos de transformação. Cada
-          profissional traz sua sensibilidade e conhecimento para compor um
-          espaço em que a saúde mental é cuidada com
+          Aqui, as diversas abordagens psicológicas se encontram para oferecer
+          um cuidado plural, ético e humano. Do atendimento infantil ao adulto,
+          do trabalho com famílias às demandas específicas da vida
+          contemporânea, nossa essência é a mesma: respeitar a singularidade de
+          cada pessoa e criar vínculos que sustentem processos de transformação.
+          Cada profissional traz sua sensibilidade e conhecimento para compor um
+          espaço em que a saúde mental é cuidada com afeto.
         </motion.p>
 
         <motion.p
@@ -157,7 +158,7 @@ const About = () => {
           terapêuticos e relações de confiança.
         </p>
 
-        <div className="grid" style={{ marginTop: 24 }}>
+        <div className="grid mt-24">
           <motion.article
             className="card service-card"
             initial={{ opacity: 0, y: 24 }}
