@@ -2,14 +2,16 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
 const ServiceCard = ({ icon, title, description, ctaLink, ctaText }) => {
   return (
     <motion.article
       className="card service-card"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      variants={itemVariants}
       whileHover={{ y: -4, scale: 1.02 }}
     >
       <div className="card-icon" aria-hidden="true">

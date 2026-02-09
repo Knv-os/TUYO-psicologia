@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const TermsOfUse = () => {
   return (
-    <main>
+    <main className="page-legal">
       <section className="hero">
         <div className="container">
           <motion.h1

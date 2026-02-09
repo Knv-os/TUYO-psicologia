@@ -9,7 +9,7 @@ const DoctorProfile = () => {
 
   if (!doctor) {
     return (
-      <main className="section">
+      <main className="page-doctors section">
         <div className="container narrow">
           <h1 className="section-title">Profissional não encontrado</h1>
           <p>Verifique a lista de profissionais.</p>
@@ -22,7 +22,7 @@ const DoctorProfile = () => {
   }
 
   return (
-    <main className="section">
+    <main className="page-doctors section">
       <div className="container profile-grid ">
         <motion.div
           className="profile-photo"
