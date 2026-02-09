@@ -1,37 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import {
-  FiMapPin,
-  FiPhone,
-  FiMail,
-  FiInstagram,
-  FiMessageCircle,
-} from "react-icons/fi";
+import { FiMapPin, FiPhone, FiMail, FiInstagram } from "react-icons/fi";
 import logo from "../assets/tuyo-logo.svg";
-
-const colVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
 
 const Footer = () => {
   return (
     <footer className="footer" id="contato">
-      <motion.div
-        className="container footer-grid"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{ staggerChildren: 0.1 }}
-      >
-        <motion.div className="footer-col" variants={colVariants}>
-          <p style={{ marginTop: 16, color: "var(--color-muted)" }}>
+      <div className="container footer-grid">
+        <div className="footer-col">
+          <Link to="/" className="footer-logo">
+            <img src={logo} alt="Tuyo Psicologia" style={{ height: 40 }} />
+          </Link>
+          <p style={{ marginTop: 16, color: "var(--text-color-secondary)" }}>
             Mais presença, mais sentido, mais vida.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div className="footer-col" variants={colVariants}>
+        <div className="footer-col">
           <h3 className="footer-title">Navegue</h3>
           <ul className="footer-nav">
             <li>
@@ -50,9 +35,9 @@ const Footer = () => {
               <Link to="/contato">Contato</Link>
             </li>
           </ul>
-        </motion.div>
+        </div>
 
-        <motion.div className="footer-col" variants={colVariants}>
+        <div className="footer-col">
           <h3 className="footer-title">Contato</h3>
           <ul className="contact-list">
             <li>
@@ -70,9 +55,9 @@ const Footer = () => {
               </a>
             </li>
           </ul>
-        </motion.div>
+        </div>
 
-        <motion.div className="footer-col" variants={colVariants}>
+        <div className="footer-col">
           <h3 className="footer-title">Redes Sociais</h3>
           <div className="socials">
             <a
@@ -84,18 +69,9 @@ const Footer = () => {
             >
               <FiInstagram />
             </a>
-            <a
-              href="https://wa.me/5519993998442"
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="WhatsApp"
-              className="social-link"
-            >
-              <FiMessageCircle />
-            </a>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
       <div className="footer-bottom container">
         <p>
           Tuyo Psicologia © {new Date().getFullYear()}. Todos os direitos

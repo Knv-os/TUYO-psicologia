@@ -9,7 +9,7 @@ const DoctorProfile = () => {
 
   if (!doctor) {
     return (
-      <main className="page-doctors section">
+      <main className="section">
         <div className="container narrow">
           <h1 className="section-title">Profissional não encontrado</h1>
           <p>Verifique a lista de profissionais.</p>
@@ -22,7 +22,7 @@ const DoctorProfile = () => {
   }
 
   return (
-    <main className="page-doctors section">
+    <main className="section">
       <div className="container profile-grid ">
         <motion.div
           className="profile-photo"
@@ -67,9 +67,9 @@ const DoctorProfile = () => {
           </ul>
 
           <div className="profile-actions">
-            <Link to="/contato" className="button button-primary">
+            <a href="#contato" className="button button-primary">
               Agendar consulta
-            </Link>
+            </a>
             <Link to="/doutores" className="button">
               Ver todos
             </Link>

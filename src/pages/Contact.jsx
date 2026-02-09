@@ -4,7 +4,7 @@ import { FiMapPin, FiPhone, FiMail } from "react-icons/fi";
 
 const Contact = () => {
   return (
-    <main className="page-contact">
+    <main>
       <section className="hero">
         <div className="container">
           <motion.h1
@@ -33,8 +33,10 @@ const Contact = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <h2 className="section-title mb-24">Nossa Localização</h2>
-            <ul className="contact-list gap-16">
+            <h2 className="section-title" style={{ marginBottom: 24 }}>
+              Nossa Localização
+            </h2>
+            <ul className="contact-list" style={{ gap: 16 }}>
               <li style={{ alignItems: "flex-start" }}>
                 <FiMapPin
                   aria-hidden="true"
@@ -55,7 +57,7 @@ const Contact = () => {
                 </a>
               </li>
             </ul>
-            <p className="mt-24" style={{ color: "var(--color-muted)" }}>
+            <p style={{ marginTop: 24, color: "var(--color-muted)" }}>
               Nosso espaço foi pensado para ser um ambiente seguro e acolhedor.
               Será um prazer receber você.
             </p>
