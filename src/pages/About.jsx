@@ -1,5 +1,6 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useMemo, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import TextReveal from "../components/TextReveal.jsx";
 import iconAfeto from "../assets/afeto.png";
 import iconAcolhimento from "../assets/acolhimento.png";
 import iconEtica from "../assets/etica.png";
@@ -7,9 +8,53 @@ import iconVinculo from "../assets/vinculo.png";
 import iconOrganizacao from "../assets/organização.png";
 import equipe from "../assets/equipe-tuyo.jpg";
 import stars from "../assets/stars.png";
+import { Link } from "react-router-dom";
 const About = () => {
+  const timelineRef = useRef(null);
+  const { scrollYProgress: timelineScroll } = useScroll({
+    target: timelineRef,
+    offset: ["start 0.85", "end 0.25"],
+  });
+  const timelineScaleX = useTransform(timelineScroll, [0, 1], [0, 1]);
+
+  const milestones = useMemo(
+    () => [
+      {
+        year: "2017",
+        side: "bottom",
+        title: "Incentive Psicologia",
+        text: "nascimento da Incentive",
+      },
+      {
+        year: "2019",
+        side: "top",
+        title: "Novo quadro societário",
+        text: "nova direção",
+      },
+      {
+        year: "2021",
+        side: "bottom",
+        title: "Mudança de visual",
+        text: "nasce a Tuyo",
+      },
+      {
+        year: "2023",
+        side: "top",
+        title: "Consolidação",
+        text: "consolidação do espaço atual",
+      },
+      {
+        year: "2025",
+        side: "bottom",
+        title: "Equipe",
+        text: "formação da equipe",
+      },
+    ],
+    [],
+  );
+
   return (
-    <main>
+    <main className="page-about">
       <section className="hero">
         <div className="container hero-inner">
           <motion.div
@@ -20,16 +65,17 @@ const About = () => {
             style={{ position: "relative" }}
           >
             <div style={{ position: "relative", zIndex: 1 }}>
-              <h1 className="hero-title">
-                A Tuyo é feita por mulheres que acreditam na força do cuidado,
-                do afeto e da ciência.
-              </h1>
+              <TextReveal
+                text="A Tuyo é feita por mulheres que acreditam na força do cuidado, do afeto e da ciência."
+                as="h1"
+                className="hero-title"
+              />
               <p className="hero-subtitle">
                 Psicologia Integrada com ética, afeto e presença.
               </p>
-              <a href="#contato" className="button button-primary">
+              <Link to="/contato" className="button button-primary">
                 Agende sua sessão
-              </a>
+              </Link>
             </div>
             <img
               src={stars}
@@ -84,13 +130,13 @@ const About = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          Aqui, as diversas abprdagens psicólogicas se encontram para oferecer
-          um cudado plural, ético e humano. Do atendimento infantil ao adulto,
-          do trablho com famílias às demandas específicas da vida contemporânea,
-          nossa essência é a mesma: respeitar a singularidade de cada pessoa e
-          criar vínculos que sustentem processos de transformação. Cada
-          profissional traz sua sensibilidade e conhecimento para compor um
-          espaço em que a saúde mental é cuidada com
+          Aqui, as diversas abordagens psicológicas se encontram para oferecer
+          um cuidado plural, ético e humano. Do atendimento infantil ao adulto,
+          do trabalho com famílias às demandas específicas da vida
+          contemporânea, nossa essência é a mesma: respeitar a singularidade de
+          cada pessoa e criar vínculos que sustentem processos de transformação.
+          Cada profissional traz sua sensibilidade e conhecimento para compor um
+          espaço em que a saúde mental é cuidada com afeto.
         </motion.p>
 
         <motion.p
@@ -106,39 +152,46 @@ const About = () => {
         </motion.p>
 
         <section
+          ref={timelineRef}
           className="timeline timeline--horizontal"
           aria-label="Linha do tempo da Tuyo"
         >
-          <div className="milestone bottom is-2017">
-            <span className="year-badge">2017</span>
-            <span className="stem" aria-hidden="true" />
-            <h4 className="milestone-title">Incentive Psicologia</h4>
-            <p className="milestone-text">nascimento da Incentive</p>
-          </div>
-          <div className="milestone top is-2019">
-            <span className="year-badge">2019</span>
-            <span className="stem" aria-hidden="true" />
-            <h4 className="milestone-title">Novo quadro societário</h4>
-            <p className="milestone-text">nova direção</p>
-          </div>
-          <div className="milestone bottom is-2021">
-            <span className="year-badge">2021</span>
-            <span className="stem" aria-hidden="true" />
-            <h4 className="milestone-title">Mudança de visual</h4>
-            <p className="milestone-text">nasce a Tuyo</p>
-          </div>
-          <div className="milestone top is-2023">
-            <span className="year-badge">2023</span>
-            <span className="stem" aria-hidden="true" />
-            <h4 className="milestone-title">Consolidação</h4>
-            <p className="milestone-text">consolidação do espaço atual</p>
-          </div>
-          <div className="milestone bottom is-2025">
-            <span className="year-badge">2025</span>
-            <span className="stem" aria-hidden="true" />
-            <h4 className="milestone-title">Equipe</h4>
-            <p className="milestone-text">formação da equipe</p>
-          </div>
+          <motion.span
+            className="timeline-progress"
+            aria-hidden="true"
+            style={{ scaleX: timelineScaleX }}
+          />
+          {milestones.map((m) => (
+            <motion.div
+              key={m.year}
+              className={`milestone ${m.side}`}
+              initial={{ opacity: 0, y: m.side === "top" ? -18 : 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
+            >
+              <motion.span
+                className="year-badge"
+                initial={{ scale: 0.9 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true, amount: 0.8 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+              >
+                {m.year}
+              </motion.span>
+              <motion.span
+                className="stem"
+                aria-hidden="true"
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, amount: 0.8 }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
+                style={{ transformOrigin: "top" }}
+              />
+              <h4 className="milestone-title">{m.title}</h4>
+              <p className="milestone-text">{m.text}</p>
+            </motion.div>
+          ))}
         </section>
 
         <motion.h2
@@ -157,13 +210,23 @@ const About = () => {
           terapêuticos e relações de confiança.
         </p>
 
-        <div className="grid" style={{ marginTop: 24 }}>
+        <motion.div
+          className="grid mt-24"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ staggerChildren: 0.1 }}
+        >
           <motion.article
             className="card service-card"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+            variants={{
+              hidden: { opacity: 0, y: 24 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.6, ease: "easeOut" },
+              },
+            }}
           >
             <div className="card-icon">
               <img src={iconAfeto} alt="Ícone Afeto" />
@@ -175,10 +238,14 @@ const About = () => {
           </motion.article>
           <motion.article
             className="card service-card"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+            variants={{
+              hidden: { opacity: 0, y: 24 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.6, ease: "easeOut" },
+              },
+            }}
           >
             <div className="card-icon">
               <img src={iconAcolhimento} alt="Ícone Acolhimento" />
@@ -190,10 +257,14 @@ const About = () => {
           </motion.article>
           <motion.article
             className="card service-card"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            variants={{
+              hidden: { opacity: 0, y: 24 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.6, ease: "easeOut" },
+              },
+            }}
           >
             <div className="card-icon">
               <img src={iconEtica} alt="Ícone Ética" />
@@ -205,10 +276,14 @@ const About = () => {
           </motion.article>
           <motion.article
             className="card service-card"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+            variants={{
+              hidden: { opacity: 0, y: 24 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.6, ease: "easeOut" },
+              },
+            }}
           >
             <div className="card-icon">
               <img src={iconVinculo} alt="Ícone Vínculo" />
@@ -220,10 +295,14 @@ const About = () => {
           </motion.article>
           <motion.article
             className="card service-card"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+            variants={{
+              hidden: { opacity: 0, y: 24 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.6, ease: "easeOut" },
+              },
+            }}
           >
             <div className="card-icon">
               <img src={iconOrganizacao} alt="Ícone Organização" />
@@ -234,7 +313,7 @@ const About = () => {
               garantem segurança e fluidez.
             </p>
           </motion.article>
-        </div>
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0 }}
